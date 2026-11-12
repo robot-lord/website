@@ -27,12 +27,16 @@ npm run preview    # serves dist/
 
 ## Deploy on Vercel
 
-1. Import the `robot-lord/robot-overlord` repository in Vercel.
-2. Set **Root Directory** to `site`.
-3. Leave **Framework Preset** on **Astro**. Vercel detects it and uses
+The Vercel project `robot-overlord` is connected to this repository: every
+PR gets a preview, and merges to `main` deploy to robot-overlord.app. To set
+it up again from scratch:
+
+1. Import the `robot-lord/website` repository in Vercel (root directory:
+   the repository root).
+2. Leave **Framework Preset** on **Astro**. Vercel detects it and uses
    `npm run build` with `dist` as the output folder. No `vercel.json` is
    needed.
-4. Add the domain `robot-overlord.app` under Settings → Domains and point
+3. Add the domain `robot-overlord.app` under Settings → Domains and point
    its DNS at Vercel.
 
 `astro.config.mjs` sets `site` to `https://robot-overlord.app`. Canonical
@@ -52,24 +56,24 @@ the domain changes.
 
 ## Content
 
-Every claim on the site comes from the repository's `README.md` and
-`docs/guide.md`. When those change, update the pages to match.
+Every claim on the site comes from rlord's `README.md` and
+`docs/guide.md` in [robot-lord/robot-overlord](https://github.com/robot-lord/robot-overlord). When those change, update the pages to match.
 
 ## Images
 
-The screenshots are WebP copies of `docs/images/*.png`, in two widths. After
-retaking the screenshots (`scripts/demo/screenshots.sh`), regenerate them
-from the repository root:
+The screenshots are WebP copies of rlord's `docs/images/*.png`, in two
+widths. After retaking them there (`scripts/demo/screenshots.sh`),
+regenerate them here, with `RLORD` pointing at a robot-overlord checkout:
 
 ```sh
 for n in overlord waiting list; do
-  cwebp -lossless -z 9 docs/images/$n.png -o site/public/img/$n-1600.webp
-  cwebp -q 82 -resize 800 0 docs/images/$n.png -o site/public/img/$n-800.webp
+  cwebp -lossless -z 9 "$RLORD/docs/images/$n.png" -o public/img/$n-1600.webp
+  cwebp -q 82 -resize 800 0 "$RLORD/docs/images/$n.png" -o public/img/$n-800.webp
 done
 ```
 
 The banner (`logo-*.webp`), the header mark, the favicons and `og.jpg` are
-made from `docs/images/logo.jpg`.
+made from rlord's `docs/images/logo.jpg`.
 
 ## Dependencies
 
