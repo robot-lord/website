@@ -72,6 +72,11 @@ for n in overlord waiting list; do
 done
 ```
 
+The phone screenshots (`phone-*.webp`) are made by rlord's
+`cargo xtask screenshots --website <this checkout>` from its demo, rendered
+with Playwright (a dev dependency here; run `npx playwright install webkit`
+once). See rlord's CONTRIBUTING.md.
+
 The banner (`logo-*.webp`), the header mark, the favicons and `og.jpg` are
 made from rlord's `docs/images/logo.jpg`.
 
