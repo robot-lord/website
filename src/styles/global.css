@@ -511,6 +511,24 @@ pre.block .c {
   color: var(--muted);
 }
 
+/* Phone screenshots */
+
+.phones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.shot.phone {
+  width: min(100%, 20rem);
+}
+
+.shot.phone img {
+  border-radius: 1.5rem;
+  border-width: 6px;
+}
+
 /* Feature grid */
 
 .grid {
