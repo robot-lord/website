@@ -102,7 +102,8 @@ import { GUIDE, ARCHITECTURE } from "../site";
       <h2 id="overlord">The overlord</h2>
       <p>
         The overlord is one agent session with rlord's tools, which are an MCP server. It opens over whatever you
-        are looking at. You choose which agent runs it: Claude Code, Codex or OpenCode.
+        are looking at. It runs on Claude Code, Codex or OpenCode. You can have one on each agent, but only one is
+        active, and only you switch which.
       </p>
       <p>
         It runs a strong model at medium effort. Look-ups, small edits and short answers it does itself. Anything
@@ -142,6 +143,18 @@ import { GUIDE, ARCHITECTURE } from "../site";
         ask first.
       </p>
 
+      <h2 id="background">Background for sessions</h2>
+      <p>
+        When the overlord starts a session, your request is its first prompt, word for word. What the overlord found
+        goes to the session separately as background, labelled as the overlord's notes. A fork keeps its original's
+        background.
+      </p>
+      <h2 id="latest">The latest code</h2>
+      <p>
+        A new session's branch starts at the newest commit of the default branch, fetched first. Before the overlord
+        answers anything about a repo's code, <code>repo_latest</code> gives it a read-only checkout of the
+        latest commit.
+      </p>
       <h2 id="plain-code">Plain code first</h2>
       <p>
         The expensive part stays small. Questions like "which sessions changed since I last looked?" or "what did we
