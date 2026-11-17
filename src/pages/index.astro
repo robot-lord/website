@@ -10,12 +10,28 @@ const features = [
     body: "One agent session wired to rlord's tools. Option-O opens it from anywhere. It finds sessions, starts new ones, passes work to the ones you have, and renames, tags and describes them.",
   },
   {
+    title: "An overlord on each agent",
+    body: "The overlord runs on Claude Code, Codex or OpenCode. When one agent is out of usage, switch to another with a key. Each keeps its own conversation.",
+  },
+  {
     title: "One list",
-    body: "Live status (working, needs you, your turn) and how much each session has used. Sort by your last message, the agent's last message or usage. Group by tag, mark favourites, search, and preview the selected session live.",
+    body: "Live status (working, needs you, your turn, waiting on background work) and how much each session has used. Sort by your last message, the agent's last message or usage. Group by tag, mark favourites, search, and preview the selected session live.",
   },
   {
     title: "Durable sessions",
     body: "Every session can be stopped and resumed straight back into its conversation. That works after a reboot too.",
+  },
+  {
+    title: "Fork a session",
+    body: "Press f to copy a session's whole conversation into a new session and try another approach. The original is left as it is.",
+  },
+  {
+    title: "Background for each session",
+    body: "What the overlord found while setting up a session goes to that session as background, kept apart from your own words.",
+  },
+  {
+    title: "Fresh code",
+    body: "New sessions branch from the latest default branch. The overlord reads the code from a read-only checkout at the same commit.",
   },
   {
     title: "Archive summaries",
@@ -35,7 +51,7 @@ const features = [
   },
   {
     title: "macOS and Linux",
-    body: "Prebuilt for Apple Silicon Macs and for Linux on x86_64 and ARM. The Linux build is static and runs on any distro.",
+    body: "Prebuilt for Apple Silicon Macs, signed with Developer ID, and for Linux on x86_64 and ARM. The Linux build is static and runs on any distro.",
   },
 ];
 
@@ -139,7 +155,8 @@ const agents = [
         <h2>Status, usage and groups</h2>
         <p>
           The list shows when each session last heard from you, when its agent last answered and what it is waiting
-          on. You can sort and search all of it.
+          on. You can sort and search all of it. Hover over a row, or read the details panel, to see each symbol in
+          words.
         </p>
       </div>
       <Shot
@@ -209,6 +226,13 @@ const agents = [
           </p>
         </li>
         <li>
+          <h3>One per agent, one active</h3>
+          <p>
+            You can run an overlord on Claude Code, Codex and OpenCode. Option-O opens the active one, and only you
+            switch which.
+          </p>
+        </li>
+        <li>
           <h3>Plain code does the bookkeeping</h3>
           <p>
             Tracking, sorting, searching and organizing are ordinary, fast code. The overlord spends tokens only on
@@ -250,8 +274,8 @@ const agents = [
         }
       </ul>
       <p class="note">
-        rlord is young and moves fast. Codex and OpenCode sessions support launch, resume, status, usage, search and
-        summaries. The guide lists what does not work yet for{" "}
+        Codex and OpenCode sessions support launch, resume, status, usage, search and
+        summaries and forks. The guide lists what does not work yet for{" "}
         <a href={`${GUIDE}#codex-sessions`}>Codex</a> and <a href={`${GUIDE}#opencode-sessions`}>OpenCode</a>. Other
         agent CLIs are planned.
       </p>

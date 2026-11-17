@@ -59,7 +59,7 @@ import { GUIDE, RELEASES, INSTALL_CMD, BREW_CMD } from "../site";
           </tbody>
         </table>
       </div>
-      <p>Prebuilt for Apple Silicon Macs and for Linux on x86_64 and ARM. The Linux build is static and runs on any distro.</p>
+      <p>Prebuilt for Apple Silicon Macs (signed with Developer ID) and for Linux on x86_64 and ARM. The Linux build is static and runs on any distro.</p>
 
       <h2 id="requirements">Requirements</h2>
       <ul>
@@ -114,6 +114,10 @@ rlord</code></pre>
         </table>
       </div>
       <p>
+        On first start rlord asks where you keep your code, and suggests a folder from the projects it has seen.{" "}
+        <code>rlord setup</code> changes it later.
+      </p>
+      <p>
         On a Mac, set your terminal to send Option as Alt or Meta. In iTerm2 that is <em>Esc+</em>, in Ghostty{" "}
         <code>macos-option-as-alt</code>, and in Terminal <em>Use Option as Meta key</em>.
       </p>
@@ -131,7 +135,10 @@ rlord</code></pre>
 
       <h2 id="updating">Updating</h2>
       <pre class="block"><code>rlord update</code></pre>
-      <p>Homebrew and distro packages update the usual way.</p>
+      <p>
+        This installs the newest stable release. Homebrew updates with <code>brew upgrade rlord</code>. For a .deb or
+        .rpm, install the newer release's package the same way.
+      </p>
 
       <p style="margin-top:2.5rem">The <a href={GUIDE}>user guide</a> covers each part in detail.</p>
     </div>
