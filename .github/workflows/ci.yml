@@ -18,5 +18,20 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm audit --audit-level=high
+      # Fail on high/critical advisories except those allowed below, each with a reason.
+      # GHSA-fc5q-39xc-vjpf: picomatch ReDoS; every version affected, no fix yet.
+      #   Build-time only (Astro's glob matching on fixed patterns); never reaches
+      #   the static site. User decision 2026-11-17. Remove once picomatch ships a fix.
+      - name: npm audit
+        run: |
+          allow='GHSA-fc5q-39xc-vjpf'
+          npm audit --json > audit.json || true
+          bad=$(jq -r --arg allow "$allow" '
+            [.vulnerabilities[] | select(.severity=="high" or .severity=="critical")
+             | .via[] | objects | select(.severity=="high" or .severity=="critical")
+             | .url | split("/") | last
+             | select(. as $id | ($allow | split(" ") | index($id)) | not)]
+            | unique | join(" ")' audit.json)
+          if [ -n "$bad" ]; then echo "high/critical advisories: $bad"; npm audit --audit-level=high; exit 1; fi
+          echo "npm audit: nothing high/critical beyond: $allow"
       - run: npm run build
